@@ -5,7 +5,6 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.LowPosition;
 import frc.robot.commands.MidPosition;
 import frc.robot.commands.HighPosition;
