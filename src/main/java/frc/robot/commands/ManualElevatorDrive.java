@@ -17,12 +17,11 @@ public class ManualElevatorDrive extends CommandBase {
   @Override
   public void initialize() {
     elevatorSubsystem.disablePid();
-    elevatorSubsystem.setManualSpeed(speed);
   }
 
   @Override
   public void execute() {
-
+    elevatorSubsystem.setManualSpeed(speed);
   }
 
   @Override
