@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ElevatorSubsystem;
 
 public class Test extends CommandBase {
-  /** Creates a new Test. */
   ElevatorSubsystem elevSubystem;
   DoubleSupplier speed;
   public Test(ElevatorSubsystem elevSub, DoubleSupplier speed) {

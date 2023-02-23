@@ -12,10 +12,7 @@ import frc.robot.commands.ManualElevatorDrive;
 import frc.robot.commands.Test;
 import frc.robot.subsystems.ElevatorSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 
 public class RobotContainer {
@@ -25,16 +22,11 @@ public class RobotContainer {
   double midEnc = 120; // TEST
   double highEnc = 190;  // TEST
 
-
-  //ElevatorCommand lowCmd = new ElevatorCommand(elevSub, lowEnc);
-  //ElevatorCommand highCmd = new ElevatorCommand(elevSub, highEnc);
-  //ElevatorCommand midCmd = new ElevatorCommand(elevSub, midEnc);
   LowPosition lowCmd = new LowPosition(elevSub);
   MidPosition midCmd = new MidPosition(elevSub);
-
   HighPosition highCmd = new HighPosition(elevSub);
   
-  ManualElevatorDrive manualUp = new ManualElevatorDrive(elevSub, 0.2);
+  ManualElevatorDrive manualUp = new ManualElevatorDrive(elevSub, 0.2); // 0.2 IS THE MANUAL ELEVATOR SPEED
   ManualElevatorDrive manualDown = new ManualElevatorDrive(elevSub, -0.2);
   
   public RobotContainer() {
@@ -43,14 +35,14 @@ public class RobotContainer {
     configureBindings();
   }
 
-  
+  //BUTTONS TO SET THE ELEVATOR TO THEIR POSITIONS
   private void configureBindings() {
-    new JoystickButton(joystick, 2).onTrue(highCmd);
-    new JoystickButton(joystick, 1).onTrue(midCmd);
-    new JoystickButton(joystick, 3).onTrue(lowCmd);
+    new JoystickButton(joystick, 4).onTrue(highCmd); // high position
+    new JoystickButton(joystick, 3).onTrue(midCmd); // mid position
+    new JoystickButton(joystick, 1).onTrue(lowCmd); // low position
 
-    new JoystickButton(joystick, 5).whileTrue(manualUp);
-    new JoystickButton(joystick, 6).whileTrue(manualDown);
+    new JoystickButton(joystick, 5).whileTrue(manualUp); // manually moving elevator up
+    new JoystickButton(joystick, 6).whileTrue(manualDown); // manually moving elevator down
   }
 
   public Command getAutonomousCommand() {

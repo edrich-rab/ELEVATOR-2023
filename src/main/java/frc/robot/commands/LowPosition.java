@@ -1,15 +1,10 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ElevatorSubsystem;
-import edu.wpi.first.math.controller.PIDController;
 
 public class LowPosition extends CommandBase {
-  /** Creates a new ElevatorCommand. */
   ElevatorSubsystem elevSub;
   double setPoint;
   public LowPosition(ElevatorSubsystem elevSubystem) {
@@ -25,7 +20,16 @@ public class LowPosition extends CommandBase {
 
   @Override
   public void execute(){
+    if(elevSub.topPressed()){
+      elevSub.changeSetpoint(setPoint);
+    }
+
+    if(elevSub.bottomPressed()){
+      elevSub.changeSetpoint(elevSub.getEncoder() + 10);
+    }
+
     elevSub.changeSetpoint(setPoint);
+    SmartDashboard.putString("Position:", "low");
   }
 
   @Override
@@ -35,11 +39,11 @@ public class LowPosition extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    if(elevSub.isAtSetpoint()){ // if setpoint is within tolerance return true
+    if(elevSub.bottomPressed() || elevSub.isAtSetpoint()){ // stops if the elevator is at the given point
       return true;
     }
-    else{ // else if not within tolerance return false
+     else{ 
       return false;
-    }
-  }
+    }  
+  }  
 }
