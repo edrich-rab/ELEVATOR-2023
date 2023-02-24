@@ -8,7 +8,7 @@ public class ArmSafetyPosition extends CommandBase {
   double setPoint;
   public ArmSafetyPosition(ElevatorSubsystem elevSubystem) {
     elevSub = elevSubystem;
-    setPoint = 39;
+    setPoint = 51;
     addRequirements(elevSub);
   }
 
